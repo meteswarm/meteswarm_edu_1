@@ -2,11 +2,11 @@
   "version": 1,
   "current": {
     "stage": 4,
-    "screen": "apply",
-    "route": "/apply",
+    "screen": "apply-complete",
+    "route": "/apply/complete",
     "agent": "screen-builder",
     "then": "verifier",
-    "gate": "G4 apply"
+    "gate": "G4 apply-complete"
   },
   "stages": {
     "1": {
@@ -54,6 +54,13 @@
       "at": "2026-10-21T06:58:19.767Z",
       "hash": "7e4cc5c4f63676f02d0523f699867c9efbcbe277fad509f57d65268f1102ee02",
       "missing": 0
+    },
+    "apply-complete": {
+      "status": "passed",
+      "script": "passed",
+      "at": "2026-10-21T07:27:18.116Z",
+      "hash": "5595b8d3bee1476486819494ce7d27ef503d7a0552c3ac8c8f0bc4e7a5b9785e",
+      "missing": 0
     }
   },
   "failures": {
@@ -63,7 +70,8 @@
     "G4:usage": 0,
     "G4:recommend": 0,
     "G4:plan-detail": 0,
-    "G4:apply": 0
+    "G4:apply": 0,
+    "G4:apply-complete": 0
   },
   "approval": {
     "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78",
