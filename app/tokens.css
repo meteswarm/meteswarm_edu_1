@@ -1,0 +1,112 @@
+/* 자동 생성 파일 — node scripts/gen-tokens.mjs 로만 만든다. 손으로 고치지 않는다. 원본: Docs/tokens.json */
+
+:root {
+  --gray-950: #000000;
+  --gray-900: #181A1B;
+  --gray-800: #2D2D2D;
+  --gray-600: #66707A;
+  --gray-500: #878787;
+  --gray-400: #B7BDC4;
+  --gray-300: #D9DCDF;
+  --gray-200: #EFF1F3;
+  --gray-100: #F7F7F7;
+  --gray-0: #FFFFFF;
+  --pink-500: #FF2E98;
+  --pink-600: #E6007E;
+  --pink-50: #FFF5FA;
+  --pink-25: #FFF8F5;
+  --red-500: #E30036;
+  --red-50: #FFF0F3;
+  --black-10: #0000001A;
+}
+
+@theme {
+  --*: initial;
+
+  --font-sans: "Noto Sans KR", sans-serif;
+
+  --color-fill-accent: var(--pink-600);
+  --color-text-accent: var(--pink-500);
+  --color-icon-accent: var(--pink-500);
+  --color-text-primary: var(--gray-900);
+  --color-text-secondary: var(--gray-600);
+  --color-text-tertiary: var(--gray-500);
+  --color-text-on-dark: var(--gray-0);
+  --color-text-error: var(--red-500);
+  --color-text-placeholder: var(--gray-400);
+  --color-text-on-disabled: var(--gray-600);
+  --color-bg-surface: var(--gray-0);
+  --color-bg-default: var(--gray-100);
+  --color-bg-subtle: var(--gray-200);
+  --color-bg-inverse: var(--gray-800);
+  --color-bg-accent-subtle: var(--pink-50);
+  --color-bg-error-subtle: var(--red-50);
+  --color-border-default: var(--gray-300);
+  --color-border-subtle: var(--gray-200);
+  --color-border-strong: var(--gray-900);
+  --color-border-divider: var(--black-10);
+  --color-border-focus: var(--pink-500);
+  --color-border-error: var(--red-500);
+  --color-fill-primary: var(--pink-500);
+  --color-fill-secondary: var(--gray-900);
+  --color-fill-tertiary: var(--gray-200);
+  --color-fill-disabled: var(--gray-300);
+  --color-fill-disabled-strong: var(--gray-400);
+  --color-fill-primary-hover: var(--pink-600);
+  --color-icon-default: var(--gray-600);
+  --color-icon-strong: var(--gray-900);
+  --color-border-medium: var(--gray-600);
+  --color-surface-default: var(--gray-0);
+  --color-icon-on-dark: var(--gray-0);
+  --color-icon-disabled: var(--gray-300);
+  --color-icon-error: var(--red-500);
+  --color-icon-primary: var(--gray-950);
+  --color-brand-primary: var(--pink-500);
+  --color-effect-shadow-subtle: #0000000D;
+
+  --text-heading-h1: 32px;
+  --text-heading-h2: 28px;
+  --text-heading-h3: 24px;
+  --text-heading-h4: 20px;
+  --text-subtitle: 18px;
+  --text-body: 16px;
+  --text-body-small: 14px;
+  --text-caption: 13px;
+  --text-caption-mini: 10px;
+  --text-12: 12px;
+
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-0: 0px;
+
+  --radius-2: 2px;
+  --radius-4: 4px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-32: 32px;
+  --radius-40: 40px;
+  --radius-999: 999px;
+  --radius-full: 9999px;
+  --radius-0: 0px;
+}

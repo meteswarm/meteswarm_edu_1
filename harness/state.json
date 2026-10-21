@@ -1,9 +1,9 @@
 {
   "version": 1,
   "current": {
-    "stage": 2,
-    "agent": "screen-planner",
-    "gate": "G2"
+    "stage": 3,
+    "agent": "token-builder",
+    "gate": "G3"
   },
   "stages": {
     "1": {
@@ -16,12 +16,21 @@
       "at": "2026-10-21T05:43:57.903Z",
       "failed": [],
       "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78"
+    },
+    "3": {
+      "status": "passed",
+      "at": "2026-10-21T05:56:45.822Z",
+      "failed": []
     }
   },
   "screens": {},
   "failures": {
     "G1": 0,
-    "G2": 0
+    "G2": 0,
+    "G3": 0
   },
-  "approval": null
+  "approval": {
+    "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78",
+    "at": "2026-10-21T05:50:02.170Z"
+  }
 }
