@@ -1,9 +1,6 @@
 {
   "version": 1,
-  "current": {
-    "stage": "G5",
-    "gate": "G5"
-  },
+  "current": null,
   "stages": {
     "1": {
       "status": "passed",
