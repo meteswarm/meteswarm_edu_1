@@ -2,11 +2,11 @@
   "version": 1,
   "current": {
     "stage": 4,
-    "screen": "usage",
-    "route": "/usage",
+    "screen": "recommend",
+    "route": "/recommend",
     "agent": "screen-builder",
     "then": "verifier",
-    "gate": "G4 usage"
+    "gate": "G4 recommend"
   },
   "stages": {
     "1": {
@@ -33,13 +33,21 @@
       "at": "2026-10-21T06:12:00.531Z",
       "hash": "7735ee3767bce03cd81249810ab94c3586af2da4fd95c3a8ac6cc24fa88c09bb",
       "missing": 0
+    },
+    "recommend": {
+      "status": "passed",
+      "script": "passed",
+      "at": "2026-10-21T06:27:16.971Z",
+      "hash": "c550228428603ef25453a7ea3a1fbd0f71a1798fb792f759ba65fa6d076ff9fa",
+      "missing": 0
     }
   },
   "failures": {
     "G1": 0,
     "G2": 0,
     "G3": 0,
-    "G4:usage": 0
+    "G4:usage": 0,
+    "G4:recommend": 0
   },
   "approval": {
     "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78",
