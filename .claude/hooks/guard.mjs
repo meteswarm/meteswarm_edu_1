@@ -111,8 +111,10 @@ function checkCommand(command, agent) {
     if (!AGENT_COMMANDS[agent].some((re) => re.test(cmd))) block(`${agent} 가 실행할 수 없는 명령`);
     return;
   }
-  const redirects = cmd.replace(/\d?>\s*(&\d|\/dev\/null|\$null|nul)\b/gi, "");
-  if (PROTECTED_DIR.test(cmd) && (/>/.test(redirects) || WRITE_OP.test(cmd))) {
+  // 따옴표 안 글자(커밋 메시지 등)는 리다이렉트·쓰기 명령으로 보지 않는다
+  const unquoted = cmd.replace(/"[^"]*"|'[^']*'/g, '""');
+  const redirects = unquoted.replace(/\d?>\s*(&\d|\/dev\/null|\$null|nul)\b/gi, "");
+  if (PROTECTED_DIR.test(cmd) && (/>/.test(redirects) || WRITE_OP.test(unquoted))) {
     block("셸로 Docs/·Reference/·app/·components/·harness/ 에 쓰지 않는다");
   }
 }
