@@ -2,11 +2,11 @@
   "version": 1,
   "current": {
     "stage": 4,
-    "screen": "plan-detail",
-    "route": "/plans/[id]",
+    "screen": "apply",
+    "route": "/apply",
     "agent": "screen-builder",
     "then": "verifier",
-    "gate": "G4 plan-detail"
+    "gate": "G4 apply"
   },
   "stages": {
     "1": {
@@ -47,6 +47,13 @@
       "at": "2026-10-21T06:43:02.610Z",
       "hash": "cbef830f3ad93929972c1af894ed7163d07963156ff0b4c685be52fcea3d6bd2",
       "missing": 0
+    },
+    "apply": {
+      "status": "passed",
+      "script": "passed",
+      "at": "2026-10-21T06:58:19.767Z",
+      "hash": "7e4cc5c4f63676f02d0523f699867c9efbcbe277fad509f57d65268f1102ee02",
+      "missing": 0
     }
   },
   "failures": {
@@ -55,7 +62,8 @@
     "G3": 0,
     "G4:usage": 0,
     "G4:recommend": 0,
-    "G4:plan-detail": 0
+    "G4:plan-detail": 0,
+    "G4:apply": 0
   },
   "approval": {
     "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78",
