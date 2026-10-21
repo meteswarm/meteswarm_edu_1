@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "current": {
+    "stage": 1,
+    "agent": "req-reader",
+    "gate": "G1"
+  },
+  "stages": {
+    "1": {
+      "status": "passed",
+      "at": "2026-10-21T05:38:24.082Z",
+      "failed": []
+    }
+  },
+  "screens": {},
+  "failures": {
+    "G1": 0
+  },
+  "approval": null
+}
