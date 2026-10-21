@@ -91,16 +91,52 @@ function checkWrite(tool, input, agent) {
 
 // ---------- 셸 명령 ----------
 
+// 셸 인자 나누기. 따옴표 묶음 하나가 인자 하나다.
+function shellArgs(cmd) {
+  return [...cmd.matchAll(/"([^"]*)"|'([^']*)'|(\S+)/g)].map((m) => m[1] ?? m[2] ?? m[3]);
+}
+
+// Git Bash 경로(/c/Users/...)를 C:/Users/... 로 바꿔 프로젝트 밖인지 본다.
+function outsideProject(p) {
+  const native = process.platform === "win32" ? p.replace(/^\/([a-z])\//i, "$1:/") : p;
+  const rel = path.relative(root, path.resolve(root, native));
+  return rel.startsWith("..") || path.isAbsolute(rel);
+}
+
+// screen-builder 백업용 복사: 받는 곳이 프로젝트 밖 scratchpad 여야 한다.
+function backupCopyAllowed(cmd) {
+  const args = shellArgs(cmd);
+  if (!/^(cp|copy-item)$/i.test(args[0] || "")) return false;
+  const rest = args.slice(1);
+  const di = rest.findIndex((a) => /^-destination$/i.test(a));
+  const dest = di >= 0 ? rest[di + 1] : rest.filter((a) => !a.startsWith("-")).pop();
+  return Boolean(dest) && /scratchpad/i.test(dest) && outsideProject(dest);
+}
+
 const AGENT_COMMANDS = {
   "req-reader": [],
   "screen-planner": [],
-  "token-builder": [/^node scripts[\\/]gen-tokens\.mjs\s*$/],
-  "screen-builder": [/^npm run (build|lint)\s*$/, /^git (diff --no-index|status)\b/, /^(cp|Copy-Item)\s.*scratchpad/i],
-  verifier: [/^node scripts[\\/]check\.mjs G4 [a-z-]+\s*$/],
+  "token-builder": [/^node scripts[\\/]gen-tokens\.mjs$/],
+  "screen-builder": [/^npm run (build|lint)$/, /^git status(\s+[\w./-]+)*$/, /^git diff --no-index\s(?!.*--output)/, backupCopyAllowed],
+  verifier: [/^node scripts[\\/]check\.mjs G4 [a-z-]+$/],
 };
 
+// 에이전트 명령은 하나만. 이어 붙이기·파이프·치환·리다이렉트·변수 글자가 있으면 막는다.
+const SHELL_META = /[;&|`<>$\n\r]/;
+
 const PROTECTED_DIR = /(^|[\s"'=/\\])(docs|reference|app|components|harness)[\\/]/i;
-const WRITE_OP = /(^|[\s;|&(])(tee|cp|mv|rm|rmdir|touch|mkdir|sed\s+-i|Out-File|Set-Content|Add-Content|New-Item|Remove-Item|Move-Item|Copy-Item|Rename-Item|Clear-Content)\b/i;
+const WRITE_OP = /(^|[\s;|&("'])(tee|cp|mv|rm|rmdir|touch|mkdir|sed\s+-i|Out-File|Set-Content|Add-Content|New-Item|Remove-Item|Move-Item|Copy-Item|Rename-Item|Clear-Content)\b/i;
+// 따옴표 안 코드를 실행하는 명령 (bash -c, node -e, python -c, powershell -Command, eval 등)
+const INLINE_CODE =
+  /(^|[\s;|&(])(((ba|z|da)?sh|cmd|pwsh|powershell)(\.exe)?\s+(-\w*c\b|\/c\b|-command\b|-encodedcommand\b)|(node|deno|bun)(\.exe)?\s+(-e|--eval|-p|--print)\b|(python3?|py|perl|ruby|php)(\.exe)?\s+-[ce]\b|eval\b|invoke-expression\b|iex\b)/i;
+
+// git 커밋 메시지만 검사에서 뺀다. 안에서 명령이 실행될 수 있는 형태($(...)·백틱이 든 큰따옴표)는 빼지 않는다.
+function stripCommitMessages(cmd) {
+  return cmd
+    .replace(/(\s-m\s+)"\$\(cat\s+<<-?\s*'(\w+)'\s*\n[\s\S]*?\n\s*\2\s*\n?\s*\)"/g, '$1""')
+    .replace(/(\s-m\s+)@'\s*\n[\s\S]*?\n'@/g, '$1""')
+    .replace(/(\s-m\s+)('[^']*'|"[^"$`]*")/g, '$1""');
+}
 
 function checkCommand(command, agent) {
   const cmd = command.trim();
@@ -108,13 +144,15 @@ function checkCommand(command, agent) {
   if (/--no-verify\b/.test(cmd)) block("--no-verify 금지");
 
   if (HARNESS_AGENTS.includes(agent)) {
-    if (!AGENT_COMMANDS[agent].some((re) => re.test(cmd))) block(`${agent} 가 실행할 수 없는 명령`);
+    if (SHELL_META.test(cmd)) block(`${agent} 는 명령을 이어 붙이거나 리다이렉트할 수 없다`);
+    if (!AGENT_COMMANDS[agent].some((r) => (typeof r === "function" ? r(cmd) : r.test(cmd)))) block(`${agent} 가 실행할 수 없는 명령`);
     return;
   }
-  // 따옴표 안 글자(커밋 메시지 등)는 리다이렉트·쓰기 명령으로 보지 않는다
-  const unquoted = cmd.replace(/"[^"]*"|'[^']*'/g, '""');
+  const msgless = stripCommitMessages(cmd);
+  // 리다이렉트는 따옴표 밖에서만 본다. 쓰기 명령·코드 실행은 따옴표 안까지 본다.
+  const unquoted = msgless.replace(/"[^"]*"|'[^']*'/g, '""');
   const redirects = unquoted.replace(/\d?>\s*(&\d|\/dev\/null|\$null|nul)\b/gi, "");
-  if (PROTECTED_DIR.test(cmd) && (/>/.test(redirects) || WRITE_OP.test(unquoted))) {
+  if (PROTECTED_DIR.test(msgless) && (/>/.test(redirects) || WRITE_OP.test(msgless) || INLINE_CODE.test(msgless))) {
     block("셸로 Docs/·Reference/·app/·components/·harness/ 에 쓰지 않는다");
   }
 }
