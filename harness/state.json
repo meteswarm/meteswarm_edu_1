@@ -1,9 +1,12 @@
 {
   "version": 1,
   "current": {
-    "stage": 3,
-    "agent": "token-builder",
-    "gate": "G3"
+    "stage": 4,
+    "screen": "usage",
+    "route": "/usage",
+    "agent": "screen-builder",
+    "then": "verifier",
+    "gate": "G4 usage"
   },
   "stages": {
     "1": {
@@ -23,11 +26,20 @@
       "failed": []
     }
   },
-  "screens": {},
+  "screens": {
+    "usage": {
+      "status": "passed",
+      "script": "passed",
+      "at": "2026-10-21T06:12:00.531Z",
+      "hash": "7735ee3767bce03cd81249810ab94c3586af2da4fd95c3a8ac6cc24fa88c09bb",
+      "missing": 0
+    }
+  },
   "failures": {
     "G1": 0,
     "G2": 0,
-    "G3": 0
+    "G3": 0,
+    "G4:usage": 0
   },
   "approval": {
     "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78",

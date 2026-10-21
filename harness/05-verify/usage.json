@@ -1,0 +1,43 @@
+{
+  "screen": "usage",
+  "route": "/usage",
+  "at": "2026-10-21T06:10:33.890Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "① 토큰 밖 값 0건",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "② ★ N1 안내 문구·기준일",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "③ ★ N2 개인정보 마스킹",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "④ 라우트 = 02 목록",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "⑤ [근거] 주석",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "⑥ build",
+      "ok": true,
+      "violations": []
+    },
+    {
+      "name": "⑦ lint",
+      "ok": true,
+      "violations": []
+    }
+  ]
+}
