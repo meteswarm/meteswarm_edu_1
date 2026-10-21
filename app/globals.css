@@ -1,124 +1,26 @@
 @import "tailwindcss";
 
-/* Docs/tokens.json — primitive */
 :root {
-  --gray-950: #000000;
-  --gray-900: #181a1b;
-  --gray-800: #2d2d2d;
-  --gray-600: #66707a;
-  --gray-500: #878787;
-  --gray-400: #b7bdc4;
-  --gray-300: #d9dcdf;
-  --gray-200: #eff1f3;
-  --gray-100: #f7f7f7;
-  --gray-0: #ffffff;
-  --pink-500: #ff2e98;
-  --pink-600: #e6007e;
-  --pink-50: #fff5fa;
-  --pink-25: #fff8f5;
-  --red-500: #e30036;
-  --red-50: #fff0f3;
-  --black-10: #0000001a;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-/* Docs/tokens.json — semantic, typography, radius (Docs/design.md 1~3장) */
 @theme inline {
-  --font-sans: var(--font-noto-sans-kr), sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
-  --color-text-primary: var(--gray-900);
-  --color-text-secondary: var(--gray-600);
-  --color-text-tertiary: var(--gray-500);
-  --color-text-on-dark: var(--gray-0);
-  --color-text-error: var(--red-500);
-  --color-text-placeholder: var(--gray-400);
-  --color-text-on-disabled: var(--gray-600);
-  --color-text-accent: var(--pink-500);
-
-  --color-bg-surface: var(--gray-0);
-  --color-bg-default: var(--gray-100);
-  --color-bg-subtle: var(--gray-200);
-  --color-bg-inverse: var(--gray-800);
-  --color-bg-accent-subtle: var(--pink-50);
-  --color-bg-error-subtle: var(--red-50);
-  --color-surface-default: var(--gray-0);
-
-  --color-border-default: var(--gray-300);
-  --color-border-subtle: var(--gray-200);
-  --color-border-strong: var(--gray-900);
-  --color-border-divider: var(--black-10);
-  --color-border-focus: var(--pink-500);
-  --color-border-error: var(--red-500);
-  --color-border-medium: var(--gray-600);
-
-  --color-fill-primary: var(--pink-500);
-  --color-fill-primary-hover: var(--pink-600);
-  --color-fill-secondary: var(--gray-900);
-  --color-fill-tertiary: var(--gray-200);
-  --color-fill-disabled: var(--gray-300);
-  --color-fill-disabled-strong: var(--gray-400);
-  --color-fill-accent: var(--pink-600);
-
-  --color-icon-default: var(--gray-600);
-  --color-icon-strong: var(--gray-900);
-  --color-icon-on-dark: var(--gray-0);
-  --color-icon-disabled: var(--gray-300);
-  --color-icon-error: var(--red-500);
-  --color-icon-primary: var(--gray-950);
-  --color-icon-accent: var(--pink-500);
-  --color-brand-primary: var(--pink-500);
-
-  --text-heading-h1: 32px;
-  --text-heading-h1--line-height: 44px;
-  --text-heading-h1--font-weight: 700;
-  --text-heading-h2: 28px;
-  --text-heading-h2--line-height: 40px;
-  --text-heading-h2--font-weight: 700;
-  --text-heading-h3: 24px;
-  --text-heading-h3--line-height: 32px;
-  --text-heading-h3--font-weight: 700;
-  --text-heading-h4: 20px;
-  --text-heading-h4--line-height: 28px;
-  --text-heading-h4--font-weight: 700;
-  --text-subtitle-bold: 18px;
-  --text-subtitle-bold--line-height: 26px;
-  --text-subtitle-bold--font-weight: 700;
-  --text-subtitle: 18px;
-  --text-subtitle--line-height: 26px;
-  --text-subtitle--font-weight: 600;
-  --text-body-strong: 16px;
-  --text-body-strong--line-height: 24px;
-  --text-body-strong--font-weight: 600;
-  --text-body-medium: 16px;
-  --text-body-medium--line-height: 24px;
-  --text-body-medium--font-weight: 500;
-  --text-body-small-strong: 14px;
-  --text-body-small-strong--line-height: 21px;
-  --text-body-small-strong--font-weight: 600;
-  --text-body-small-medium: 14px;
-  --text-body-small-medium--line-height: 21px;
-  --text-body-small-medium--font-weight: 500;
-  --text-caption-medium: 13px;
-  --text-caption-medium--line-height: 18px;
-  --text-caption-medium--font-weight: 500;
-  --text-caption-bold: 13px;
-  --text-caption-bold--line-height: 18px;
-  --text-caption-bold--font-weight: 700;
-  --text-caption-small: 12px;
-  --text-caption-small--line-height: 16px;
-  --text-caption-small--font-weight: 500;
-  --text-caption-mini: 10px;
-  --text-caption-mini--line-height: 14px;
-  --text-caption-mini--font-weight: 600;
-
-  --radius-4: 4px;
-  --radius-6: 6px;
-  --radius-8: 8px;
-  --radius-12: 12px;
-  --radius-16: 16px;
-  --radius-999: 999px;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
 }
 
 body {
-  background: var(--color-bg-surface);
-  color: var(--color-text-primary);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
