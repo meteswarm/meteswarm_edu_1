@@ -1,20 +1,27 @@
 {
   "version": 1,
   "current": {
-    "stage": 1,
-    "agent": "req-reader",
-    "gate": "G1"
+    "stage": 2,
+    "agent": "screen-planner",
+    "gate": "G2"
   },
   "stages": {
     "1": {
       "status": "passed",
       "at": "2026-10-21T05:38:24.082Z",
       "failed": []
+    },
+    "2": {
+      "status": "passed",
+      "at": "2026-10-21T05:43:57.903Z",
+      "failed": [],
+      "hash": "26b556e205d061417b2f7911e4d15d24c3944e053c1265361804f3711a5a6f78"
     }
   },
   "screens": {},
   "failures": {
-    "G1": 0
+    "G1": 0,
+    "G2": 0
   },
   "approval": null
 }
